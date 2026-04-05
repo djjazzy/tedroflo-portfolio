@@ -1,21 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Portfolio{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
-<body>
-    <nav>
-        <a href="{{ url_for('main.index') }}">Home</a>
-        <a href="{{ url_for('resume.index') }}">Resume</a>
-        <a href="{{ url_for('portfolio.index') }}">Portfolio</a>
-        <a href="{{ url_for('lab.index') }}">Lab</a>
+<body class="h-full bg-gray-950 text-gray-100 font-sans">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-gray-900 border-b border-gray-800 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="{{ url_for('main.index') }}" 
+               class="text-lg font-semibold tracking-tight text-white hover:text-blue-400 transition-colors">
+                Edwin Artis
+            </a>
+            <div class="flex gap-8 text-sm text-gray-400">
+                <a href="{{ url_for('main.index') }}" 
+                   class="hover:text-white transition-colors">Home</a>
+                <a href="{{ url_for('resume.index') }}" 
+                   class="hover:text-white transition-colors">Resume</a>
+                <a href="{{ url_for('portfolio.index') }}" 
+                   class="hover:text-white transition-colors">Portfolio</a>
+                <a href="{{ url_for('lab.index') }}" 
+                   class="hover:text-white transition-colors">Lab</a>
+                <a href="{{ url_for('main.about') }}" 
+                   class="hover:text-white transition-colors">About</a>
+            </div>
+        </div>
     </nav>
-    <main>
+
+    <!-- Main content -->
+    <main class="pt-16 min-h-screen">
         {% block content %}{% endblock %}
     </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-8 mt-16">
+        <div class="max-w-6xl mx-auto px-6 text-center text-gray-500 text-sm">
+            <p>Built with Flask · Hosted on Le Potato · Served via Cloudflare</p>
+        </div>
+    </footer>
+
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% block scripts %}{% endblock %}
 </body>
