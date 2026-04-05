@@ -1,0 +1,15 @@
+nano .gitignore
+```
+
+Paste this:
+```
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.sock
+*.log
+.env
+instance/
+.DS_Store
