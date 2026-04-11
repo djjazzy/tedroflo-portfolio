@@ -1,0 +1,501 @@
+{% extends "base.html" %}
+{% block title %}Magnetic Flux & Permeability — Lab{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-6 py-16">
+
+    <!-- Breadcrumb -->
+    <div class="mb-10 text-sm text-gray-500">
+        <a href="{{ url_for('lab.index') }}" class="hover:text-gray-300 transition-colors">
+            Lab
+        </a>
+        <span class="mx-2">›</span>
+        <span class="text-gray-300">Magnetic Flux &amp; Permeability</span>
+    </div>
+
+    <!-- Header -->
+    <div class="mb-10">
+        <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-2">
+            Maxwell's Equations · ∇·B = 0
+        </p>
+        <h1 class="text-4xl font-bold text-white mb-4 tracking-tight">
+            Magnetic Flux &amp; Material Permeability
+        </h1>
+        <p class="text-gray-400 leading-relaxed">
+            Select a material below. The visualization shows the exact analytical solution for
+            magnetic flux lines (B field) around a cylindrical cross-section of that material
+            in a uniform applied field H₀. Flux lines are animated to show direction and density.
+        </p>
+    </div>
+
+    <!-- Canvas -->
+    <div style="background:#030712; border:1px solid #1f2937; border-radius:0.75rem;
+                overflow:hidden; margin-bottom:1.5rem;">
+        <canvas id="fieldCanvas" style="display:block; width:100%; height:440px;"></canvas>
+    </div>
+
+    <!-- Material Selector -->
+    <div style="margin-bottom:1.5rem;">
+        <p class="text-gray-500 text-xs font-medium tracking-widest uppercase mb-3">
+            Select Material
+        </p>
+        <div id="materialButtons" style="display:flex; flex-wrap:wrap; gap:0.5rem;"></div>
+    </div>
+
+    <!-- Stats -->
+    <div id="statsBar"
+         style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;
+                margin-bottom:2rem;">
+        <div class="bg-gray-900 border border-gray-800 rounded-xl px-5 py-4">
+            <p class="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                Rel. Permeability
+            </p>
+            <p id="statMu" class="text-white text-xl font-mono font-semibold">—</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl px-5 py-4">
+            <p class="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                B Inside / B₀
+            </p>
+            <p id="statB" class="text-white text-xl font-mono font-semibold">—</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl px-5 py-4">
+            <p class="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                B at Entry Point
+            </p>
+            <p id="statEntry" class="text-white text-xl font-mono font-semibold">—</p>
+        </div>
+    </div>
+
+    <!-- Physics notes -->
+    <section>
+        <h2 class="text-xl font-semibold text-white mb-4 pb-3 border-b border-gray-800">
+            What You're Seeing
+        </h2>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-3">
+                    The Physics
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        <span><span class="text-white font-mono">∇·B = 0</span> —
+                        magnetic flux lines never start or stop; they form closed loops</span>
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        <span>At the material boundary: normal B is continuous,
+                        tangential H is continuous</span>
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        <span>High μᵣ → material acts as a low-reluctance path,
+                        concentrating flux through itself</span>
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        <span>The exact field solution used here is
+                        <span class="text-white font-mono">B = μ₀H₀[1 + kR²(x²−y²)/r⁴]</span>
+                        outside</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-3">
+                    Why It Matters
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        303/304 SS and titanium are nearly indistinguishable from air
+                        magnetically — critical for sensor housings and MRI-adjacent components
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        17-4 PH dramatically concentrates flux — the same alloy family
+                        as 304 SS but ferromagnetic due to its martensitic microstructure
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        In magnetic circuit design, high-μᵣ materials route flux the
+                        way copper routes current — this is the basis of transformer
+                        cores and motor laminations
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+{% block scripts %}
+<script>
+const MATERIALS = [
+    {
+        name:        'Air',
+        mu_r:        1.0,
+        fill:        '#0a0f1a',
+        border:      '#1e3a5f',
+        label:       '#60a5fa',
+        lineInside:  '#3b82f6',
+    },
+    {
+        name:        'Aluminum 6061',
+        mu_r:        1.000022,
+        fill:        '#071a1a',
+        border:      '#0e7490',
+        label:       '#22d3ee',
+        lineInside:  '#06b6d4',
+    },
+    {
+        name:        'Titanium Gr. 5',
+        mu_r:        1.00018,
+        fill:        '#071a10',
+        border:      '#065f46',
+        label:       '#34d399',
+        lineInside:  '#10b981',
+    },
+    {
+        name:        '303 / 304 SS',
+        mu_r:        1.05,
+        fill:        '#1a1a07',
+        border:      '#92400e',
+        label:       '#fbbf24',
+        lineInside:  '#f59e0b',
+    },
+    {
+        name:        '17-4 PH (H900)',
+        mu_r:        100,
+        fill:        '#1a0707',
+        border:      '#991b1b',
+        label:       '#f87171',
+        lineInside:  '#ef4444',
+    },
+    {
+        name:        'Soft Iron',
+        mu_r:        5000,
+        fill:        '#120404',
+        border:      '#7f1d1d',
+        label:       '#fca5a5',
+        lineInside:  '#dc2626',
+    },
+];
+
+// ─── Canvas setup ────────────────────────────────────────────────────────────
+
+const canvas  = document.getElementById('fieldCanvas');
+const ctx     = canvas.getContext('2d');
+
+function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    canvas.width  = Math.floor(rect.width);
+    canvas.height = Math.floor(rect.height);
+}
+resizeCanvas();
+
+// ─── Field computation ───────────────────────────────────────────────────────
+// All coordinates are canvas-centred: cx = px - CX, cy = py - CY
+// The analytic 2-D solution for a cylinder (radius R, permeability mu_r)
+// in a uniform field B0 along +x:
+//   Outside: Bx = B0·(1 + k·R²·(cx²−cy²)/r⁴)
+//            By = B0·k·R²·2·cx·cy / r⁴      (canvas y-down convention)
+//   Inside : Bx = 2·μr/(μr+1)·B0,  By = 0
+// where k = (μr−1)/(μr+1)
+
+function fieldAt(cx, cy, mu_r, R) {
+    const r2 = cx * cx + cy * cy;
+    if (r2 < R * R) {
+        return { bx: 2 * mu_r / (mu_r + 1), by: 0 };
+    }
+    const k   = (mu_r - 1) / (mu_r + 1);
+    const kR2 = k * R * R;
+    const r4  = r2 * r2;
+    return {
+        bx: 1 + kR2 * (cx * cx - cy * cy) / r4,
+        by: kR2 * 2 * cx * cy / r4,
+    };
+}
+
+// ─── Streamline tracing (RK4) ────────────────────────────────────────────────
+
+function traceStreamline(px0, py0, mu_r, R, W, H, step) {
+    const CX = W / 2, CY = H / 2;
+    const pts = [];
+    let px = px0, py = py0;
+
+    for (let i = 0; i < 6000; i++) {
+        pts.push([px, py]);
+
+        const cx = px - CX, cy = py - CY;
+        function norm(bx, by) {
+            const m = Math.sqrt(bx * bx + by * by);
+            return m > 1e-9 ? [bx / m, by / m] : [1, 0];
+        }
+
+        const f1 = fieldAt(cx, cy, mu_r, R);
+        const [k1x, k1y] = norm(f1.bx, f1.by);
+
+        const f2 = fieldAt(cx + step*0.5*k1x, cy + step*0.5*k1y, mu_r, R);
+        const [k2x, k2y] = norm(f2.bx, f2.by);
+
+        const f3 = fieldAt(cx + step*0.5*k2x, cy + step*0.5*k2y, mu_r, R);
+        const [k3x, k3y] = norm(f3.bx, f3.by);
+
+        const f4 = fieldAt(cx + step*k3x, cy + step*k3y, mu_r, R);
+        const [k4x, k4y] = norm(f4.bx, f4.by);
+
+        px += step * (k1x + 2*k2x + 2*k3x + k4x) / 6;
+        py += step * (k1y + 2*k2y + 2*k3y + k4y) / 6;
+
+        if (px > W + 5 || px < -5) break;
+        if (py < -5 || py > H + 5) break;
+    }
+    return pts;
+}
+
+function computeStreamlines(mat) {
+    const W = canvas.width, H = canvas.height;
+    const R  = Math.min(W, H) * 0.16;
+    const N  = 24;
+    const margin = H * 0.04;
+    const lines = [];
+    for (let i = 0; i <= N; i++) {
+        const py = margin + i * (H - 2 * margin) / N;
+        lines.push(traceStreamline(2, py, mat.mu_r, R, W, H, 2));
+    }
+    return { lines, R };
+}
+
+// ─── Rendering ───────────────────────────────────────────────────────────────
+
+let animOffset = 0;
+let currentMat = MATERIALS[4];     // default: 17-4 PH
+let streamCache = null;
+
+function render() {
+    const W = canvas.width, H = canvas.height;
+    const CX = W / 2, CY = H / 2;
+
+    if (!streamCache) streamCache = computeStreamlines(currentMat);
+    const { lines, R } = streamCache;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Background
+    ctx.fillStyle = '#030712';
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.025)';
+    ctx.lineWidth = 1;
+    for (let x = 0; x < W; x += 50) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = 0; y < H; y += 50) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+
+    const OUTSIDE_COLOR = '#2563eb';
+    const INSIDE_COLOR  = currentMat.lineInside;
+
+    // Draw field lines
+    for (const pts of lines) {
+        if (pts.length < 2) continue;
+
+        // Build cumulative arc-length array for particle placement
+        const cumLen = [0];
+        for (let j = 1; j < pts.length; j++) {
+            const dx = pts[j][0] - pts[j-1][0];
+            const dy = pts[j][1] - pts[j-1][1];
+            cumLen.push(cumLen[j-1] + Math.sqrt(dx*dx + dy*dy));
+        }
+        const totalLen = cumLen[cumLen.length - 1];
+
+        // Draw line segments, coloured by inside/outside
+        ctx.lineWidth = 1.4;
+        let prevInside = null;
+        ctx.beginPath();
+
+        for (let j = 0; j < pts.length; j++) {
+            const [px, py] = pts[j];
+            const inside = (px-CX)*(px-CX) + (py-CY)*(py-CY) < R*R;
+            if (j === 0) {
+                ctx.moveTo(px, py);
+                prevInside = inside;
+            } else if (inside !== prevInside) {
+                ctx.strokeStyle = prevInside ? INSIDE_COLOR : OUTSIDE_COLOR;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(pts[j-1][0], pts[j-1][1]);
+                prevInside = inside;
+            }
+            ctx.lineTo(px, py);
+        }
+        ctx.strokeStyle = prevInside ? INSIDE_COLOR : OUTSIDE_COLOR;
+        ctx.stroke();
+
+        // Animated particles along this streamline
+        const SPACING = 55;
+        const DOT_R   = 2.2;
+        let d = (animOffset % SPACING);
+        let seg = 0;
+
+        while (d < totalLen && seg < pts.length - 1) {
+            // Advance to cumLen >= d
+            while (seg < cumLen.length - 1 && cumLen[seg + 1] < d) seg++;
+            if (seg >= pts.length - 1) break;
+
+            const t = (d - cumLen[seg]) / (cumLen[seg+1] - cumLen[seg] + 1e-9);
+            const px = pts[seg][0] + t * (pts[seg+1][0] - pts[seg][0]);
+            const py2= pts[seg][1] + t * (pts[seg+1][1] - pts[seg][1]);
+
+            const inside = (px-CX)*(px-CX) + (py2-CY)*(py2-CY) < R*R;
+            ctx.beginPath();
+            ctx.arc(px, py2, DOT_R, 0, 2*Math.PI);
+            ctx.fillStyle = inside ? INSIDE_COLOR : '#93c5fd';
+            ctx.fill();
+
+            d += SPACING;
+        }
+    }
+
+    // Cylinder fill
+    const cx2 = CX, cy2 = CY;
+    const grad = ctx.createRadialGradient(cx2, cy2, 0, cx2, cy2, R);
+    grad.addColorStop(0, currentMat.fill + 'ff');
+    grad.addColorStop(1, currentMat.fill + 'cc');
+    ctx.beginPath();
+    ctx.arc(cx2, cy2, R, 0, 2*Math.PI);
+    ctx.fillStyle = grad;
+    ctx.fill();
+    ctx.strokeStyle = currentMat.border;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Labels inside cylinder
+    ctx.textAlign = 'center';
+    ctx.font = 'bold 13px ui-monospace, monospace';
+    ctx.fillStyle = currentMat.label;
+    ctx.fillText(currentMat.name, cx2, cy2 - 10);
+
+    const mu_r = currentMat.mu_r;
+    const muStr = mu_r >= 1000
+        ? mu_r.toLocaleString()
+        : mu_r < 1.001
+            ? mu_r.toFixed(6)
+            : mu_r < 1.1
+                ? mu_r.toFixed(3)
+                : mu_r.toString();
+
+    ctx.font = '11px ui-monospace, monospace';
+    ctx.fillStyle = 'rgba(156,163,175,0.9)';
+    ctx.fillText('μᵣ = ' + muStr, cx2, cy2 + 10);
+
+    // H₀ arrow label (left side)
+    ctx.textAlign = 'left';
+    ctx.font = '12px ui-monospace, monospace';
+    ctx.fillStyle = 'rgba(75,85,99,0.8)';
+    ctx.fillText('H₀ →', 10, CY - 6);
+
+    // Scale indicator (right side)
+    ctx.textAlign = 'right';
+    ctx.fillText('B₀ (uniform)', W - 10, CY - 6);
+}
+
+// ─── Animation loop ──────────────────────────────────────────────────────────
+
+function animate() {
+    animOffset += 0.4;
+    render();
+    requestAnimationFrame(animate);
+}
+
+// ─── Material buttons ─────────────────────────────────────────────────────────
+
+function updateStats(mat) {
+    const mu = mat.mu_r;
+    const bInside  = 2 * mu / (mu + 1);
+    const bEntry   = 1 + (mu - 1) / (mu + 1);   // at equatorial surface (r=R, θ=0)
+
+    const fmt = v => v < 1.0001
+        ? v.toFixed(6)
+        : v < 1.01
+            ? v.toFixed(4)
+            : v.toFixed(3);
+
+    document.getElementById('statMu').textContent =
+        mu >= 1000 ? mu.toLocaleString() : (mu < 1.001 ? mu.toFixed(6) : mu.toString());
+    document.getElementById('statB').textContent    = fmt(bInside) + '×';
+    document.getElementById('statEntry').textContent = fmt(bEntry) + '× B₀';
+}
+
+const btnContainer = document.getElementById('materialButtons');
+MATERIALS.forEach((mat, idx) => {
+    const btn = document.createElement('button');
+    btn.textContent = mat.name;
+    btn.dataset.idx = idx;
+
+    const baseStyle = `
+        font-size:0.75rem; font-weight:500; padding:0.375rem 0.875rem;
+        border-radius:0.375rem; border:1px solid; cursor:pointer;
+        transition:all 0.15s; white-space:nowrap;
+    `;
+    btn.style.cssText = baseStyle;
+
+    function setActive(active) {
+        if (active) {
+            btn.style.background    = mat.fill;
+            btn.style.borderColor   = mat.border;
+            btn.style.color         = mat.label;
+        } else {
+            btn.style.background    = 'transparent';
+            btn.style.borderColor   = '#374151';
+            btn.style.color         = '#6b7280';
+        }
+    }
+
+    setActive(idx === 4);   // 17-4 PH default
+
+    btn.addEventListener('click', () => {
+        currentMat   = mat;
+        streamCache  = null;
+        updateStats(mat);
+        document.querySelectorAll('#materialButtons button').forEach((b, i) => {
+            const m = MATERIALS[i];
+            if (i === idx) {
+                b.style.background  = m.fill;
+                b.style.borderColor = m.border;
+                b.style.color       = m.label;
+            } else {
+                b.style.background  = 'transparent';
+                b.style.borderColor = '#374151';
+                b.style.color       = '#6b7280';
+            }
+        });
+    });
+
+    btnContainer.appendChild(btn);
+});
+
+// Recompute on resize
+window.addEventListener('resize', () => {
+    resizeCanvas();
+    streamCache = null;
+});
+
+// Initial stats + kick off animation
+updateStats(currentMat);
+animate();
+</script>
+{% endblock %}
+{% endblock %}

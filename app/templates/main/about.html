@@ -1,5 +1,232 @@
 {% extends "base.html" %}
-{% block title %}About{% endblock %}
+{% block title %}About — Edwin Floyd{% endblock %}
+
 {% block content %}
-<h1>About</h1>
+<div class="max-w-4xl mx-auto px-6 py-16">
+
+    <!-- Header -->
+    <div class="mb-16">
+        <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-2">
+            Under the Hood
+        </p>
+        <h1 class="text-5xl font-bold text-white mb-4 tracking-tight">
+            About This Site
+        </h1>
+        <p class="text-gray-400 text-lg leading-relaxed">
+            This portfolio is itself a project — designed, built, and self-hosted
+            from scratch on a single-board computer running in a home lab.
+            No cloud, no managed hosting, no templates.
+        </p>
+    </div>
+
+    <!-- Hardware -->
+    <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-6 pb-4 border-b border-gray-800">
+            Hardware
+        </h2>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-4">
+                    Application Server
+                </p>
+                <p class="text-white font-semibold mb-2">Libre Computer AML-S905X-CC</p>
+                <p class="text-gray-500 text-xs mb-4">"Le Potato" — ARM Cortex-A53 · Debian 12 Bookworm</p>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Runs the Flask application and Gunicorn WSGI server
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Communicates via Unix socket to Nginx reverse proxy
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Development via VSCode SSH Remote from any machine
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-4">
+                    Network Gateway
+                </p>
+                <p class="text-white font-semibold mb-2">Raspberry Pi 4</p>
+                <p class="text-gray-500 text-xs mb-4">ARM Cortex-A72 · Debian — planned</p>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Runs <span class="text-gray-300 font-mono text-xs">cloudflared</span>
+                        — outbound Cloudflare Tunnel, no open ports
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Runs Pi-hole for network-level DNS filtering
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        ASUS RT-AX86U router flashed with Asuswrt-Merlin
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Software Stack -->
+    <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-6 pb-4 border-b border-gray-800">
+            Software Stack
+        </h2>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+            <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr style="border-bottom:1px solid #1f2937;">
+                        <th class="text-left text-xs font-medium text-gray-500 tracking-widest
+                                   uppercase px-6 py-4">Layer</th>
+                        <th class="text-left text-xs font-medium text-gray-500 tracking-widest
+                                   uppercase px-6 py-4">Technology</th>
+                        <th class="text-left text-xs font-medium text-gray-500 tracking-widest
+                                   uppercase px-6 py-4">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom:1px solid #111827;">
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">Framework</td>
+                        <td class="px-6 py-4 text-white text-sm font-mono">Flask</td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            Python web framework — blueprints, Jinja2 templates, SQLAlchemy ORM
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #111827;">
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">Database</td>
+                        <td class="px-6 py-4 text-white text-sm font-mono">SQLite</td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            Stores resume / work history data; queried live on each page load
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #111827;">
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">CSS</td>
+                        <td class="px-6 py-4 text-white text-sm font-mono">Tailwind CSS v4</td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            Utility-first CSS; compiled by a standalone CLI watcher running
+                            as a systemd service
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #111827;">
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">WSGI</td>
+                        <td class="px-6 py-4 text-white text-sm font-mono">Gunicorn</td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            Serves the Flask app via Unix socket; managed by systemd
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #111827;">
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">Reverse Proxy</td>
+                        <td class="px-6 py-4 text-white text-sm font-mono">Nginx</td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            Handles static file serving and proxies requests to Gunicorn
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #111827;">
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">Tunnel</td>
+                        <td class="px-6 py-4 text-white text-sm font-mono">Cloudflare Tunnel</td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            Outbound-only tunnel from the RPi4 to Cloudflare's edge —
+                            no ports exposed to the internet, home IP never revealed
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">Visualizations</td>
+                        <td class="px-6 py-4 text-white text-sm font-mono">HTML5 Canvas / JS</td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            Interactive Lab visualizations rendered entirely in the browser —
+                            physics computed client-side, no server load
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Architecture diagram (text-based) -->
+    <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-6 pb-4 border-b border-gray-800">
+            Request Flow
+        </h2>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-8">
+            <div style="display:flex; align-items:center; justify-content:center;
+                        flex-wrap:wrap; gap:0; font-family:ui-monospace,monospace;">
+
+                <div style="text-align:center; padding:0 0.5rem;">
+                    <div class="text-xs text-gray-500 mb-2">Visitor</div>
+                    <div class="text-sm text-white bg-gray-800 border border-gray-700
+                                rounded-lg px-4 py-3">Browser</div>
+                </div>
+
+                <div class="text-gray-600 text-sm px-2">──▶</div>
+
+                <div style="text-align:center; padding:0 0.5rem;">
+                    <div class="text-xs text-gray-500 mb-2">CDN / WAF</div>
+                    <div class="text-sm text-white bg-gray-800 border border-gray-700
+                                rounded-lg px-4 py-3">Cloudflare<br>Edge</div>
+                </div>
+
+                <div class="text-gray-600 text-sm px-2">──▶</div>
+
+                <div style="text-align:center; padding:0 0.5rem;">
+                    <div class="text-xs text-gray-500 mb-2">Home LAN (RPi4)</div>
+                    <div class="text-sm text-white bg-gray-800 border border-gray-700
+                                rounded-lg px-4 py-3">cloudflared<br>tunnel</div>
+                </div>
+
+                <div class="text-gray-600 text-sm px-2">──▶</div>
+
+                <div style="text-align:center; padding:0 0.5rem;">
+                    <div class="text-xs text-gray-500 mb-2">Le Potato</div>
+                    <div class="text-sm text-white bg-gray-800 border border-gray-700
+                                rounded-lg px-4 py-3">Nginx<br>▼<br>Gunicorn<br>▼<br>Flask</div>
+                </div>
+
+                <div class="text-gray-600 text-sm px-2">──▶</div>
+
+                <div style="text-align:center; padding:0 0.5rem;">
+                    <div class="text-xs text-gray-500 mb-2">Le Potato</div>
+                    <div class="text-sm text-white bg-gray-800 border border-gray-700
+                                rounded-lg px-4 py-3">SQLite<br>DB</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why self-hosted -->
+    <section>
+        <h2 class="text-2xl font-semibold text-white mb-6 pb-4 border-b border-gray-800">
+            Why Self-Hosted?
+        </h2>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-8">
+            <ul class="space-y-3">
+                <li class="flex items-start gap-3 text-gray-300 text-sm leading-relaxed">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                    <span>The site is a demonstration of software and systems skills —
+                    deploying it on managed infrastructure would miss the point.</span>
+                </li>
+                <li class="flex items-start gap-3 text-gray-300 text-sm leading-relaxed">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                    <span>Running on a $15 ARM SBC with no cloud costs is a practical constraint
+                    that informs every technical decision — from choosing SQLite over Postgres
+                    to keeping Lab visualizations client-side.</span>
+                </li>
+                <li class="flex items-start gap-3 text-gray-300 text-sm leading-relaxed">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                    <span>The Cloudflare Tunnel approach demonstrates that secure public hosting
+                    from a home network doesn't require exposed ports, a static IP,
+                    or a monthly bill.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</div>
 {% endblock %}
