@@ -1,0 +1,476 @@
+{% extends "base.html" %}
+{% block title %}BLDC Motor Control System — Portfolio{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-6 py-16">
+
+    <!-- Breadcrumb -->
+    <div class="mb-10 text-sm text-gray-500">
+        <a href="{{ url_for('portfolio.index') }}" class="hover:text-gray-300 transition-colors">
+            Portfolio
+        </a>
+        <span class="mx-2">›</span>
+        <a href="{{ url_for('portfolio.ee') }}" class="hover:text-gray-300 transition-colors">
+            Electrical Engineering
+        </a>
+        <span class="mx-2">›</span>
+        <span class="text-gray-300">BLDC Motor Control System</span>
+    </div>
+
+    <!-- Project header -->
+    <div class="mb-16">
+        <!-- Tags -->
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem;">
+            <span class="text-xs font-medium px-2 py-1 rounded
+                         bg-blue-950 text-blue-400 border border-blue-900">EE</span>
+            <span class="text-xs font-medium px-2 py-1 rounded
+                         bg-blue-950 text-blue-400 border border-blue-900">Firmware</span>
+            <span class="text-xs font-medium px-2 py-1 rounded
+                         bg-blue-950 text-blue-400 border border-blue-900">ME</span>
+            <span class="text-xs font-medium px-2 py-1 rounded
+                         bg-yellow-950 text-yellow-400 border border-yellow-900">
+                In Progress
+            </span>
+        </div>
+
+        <h1 class="text-5xl font-bold text-white mb-4 tracking-tight">
+            BLDC Motor Control System
+        </h1>
+        <p class="text-gray-400 text-lg leading-relaxed">
+            A complete closed-loop Field Oriented Control (FOC) system for a brushless DC motor —
+            designed, built, and programmed by one engineer across hardware, firmware, and
+            mechanical disciplines. Demonstrates sensorless FOC, sensored FOC, speed control,
+            and position control using a TI C2000 real-time microcontroller.
+        </p>
+    </div>
+
+    <!-- Hardware Stack -->
+    <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-6 pb-4 border-b border-gray-800">
+            Hardware Stack
+        </h2>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+            <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr style="border-bottom: 1px solid #1f2937;">
+                        <th class="text-left text-xs font-medium text-gray-500 tracking-widest
+                                   uppercase px-6 py-4">Component</th>
+                        <th class="text-left text-xs font-medium text-gray-500 tracking-widest
+                                   uppercase px-6 py-4">Part</th>
+                        <th class="text-left text-xs font-medium text-gray-500 tracking-widest
+                                   uppercase px-6 py-4">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #111827;">
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">MCU</td>
+                        <td class="px-6 py-4 text-white text-sm">TI LAUNCHXL-F280049C</td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            C2000 Piccolo — real-time control DSP with ePWM, CLA, ADC, eQEP
+                        </td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #111827;">
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">Gate Driver</td>
+                        <td class="px-6 py-4 text-white text-sm">TI BOOSTXL-DRV8323RS</td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            3-phase gate driver with integrated current shunt amplifiers (SPI config)
+                        </td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #111827;">
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">Motor</td>
+                        <td class="px-6 py-4 text-white text-sm">TSINY JK42BLS01</td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            NEMA 17 frame BLDC — 3-phase, no encoder (sensorless to start)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 text-blue-400 text-sm font-medium">Encoder</td>
+                        <td class="px-6 py-4 text-sm" style="color:#6b7280;">
+                            AS5047D
+                            <span class="ml-2 text-xs px-2 py-0.5 rounded
+                                         bg-yellow-950 text-yellow-500 border border-yellow-900">
+                                Pending
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-gray-400 text-sm">
+                            14-bit magnetic absolute encoder — SPI/ABI interface for sensored FOC
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Motor Specifications -->
+    <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-6 pb-4 border-b border-gray-800">
+            Motor Specifications
+            <span class="ml-3 text-sm font-normal text-gray-500">TSINY JK42BLS01</span>
+        </h2>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+
+            <!-- Electrical -->
+            <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-800">
+                    <p class="text-blue-400 text-xs font-medium tracking-widest uppercase">
+                        Electrical
+                    </p>
+                </div>
+                <table style="width:100%; border-collapse:collapse;">
+                    <tbody>
+                        <tr style="border-bottom:1px solid #111827;">
+                            <td class="px-6 py-3 text-gray-500 text-xs">Rated Voltage</td>
+                            <td class="px-6 py-3 text-white text-sm font-medium text-right">24 VDC</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #111827;">
+                            <td class="px-6 py-3 text-gray-500 text-xs">Rated Speed</td>
+                            <td class="px-6 py-3 text-white text-sm font-medium text-right">4,000 RPM</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #111827;">
+                            <td class="px-6 py-3 text-gray-500 text-xs">Rated Torque</td>
+                            <td class="px-6 py-3 text-white text-sm font-medium text-right">0.0625 N·m</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #111827;">
+                            <td class="px-6 py-3 text-gray-500 text-xs">Peak Torque</td>
+                            <td class="px-6 py-3 text-white text-sm font-medium text-right">0.19 N·m</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #111827;">
+                            <td class="px-6 py-3 text-gray-500 text-xs">Rated Current</td>
+                            <td class="px-6 py-3 text-white text-sm font-medium text-right">1.8 A</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #111827;">
+                            <td class="px-6 py-3 text-gray-500 text-xs">Peak Current</td>
+                            <td class="px-6 py-3 text-white text-sm font-medium text-right">5.4 A</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #111827;">
+                            <td class="px-6 py-3 text-gray-500 text-xs">Rated Power</td>
+                            <td class="px-6 py-3 text-white text-sm font-medium text-right">26 W</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #111827;">
+                            <td class="px-6 py-3 text-gray-500 text-xs">Back EMF (Ke)</td>
+                            <td class="px-6 py-3 text-white text-sm font-medium text-right">4.1 V/kRPM</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #111827;">
+                            <td class="px-6 py-3 text-gray-500 text-xs">Torque Constant (Kt)</td>
+                            <td class="px-6 py-3 text-white text-sm font-medium text-right">0.039 N·m/A</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-3 text-gray-500 text-xs">Rotor Inertia</td>
+                            <td class="px-6 py-3 text-white text-sm font-medium text-right">24 g·cm²</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Architecture & Mechanical -->
+            <div style="display:flex; flex-direction:column; gap:1.5rem;">
+
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-800">
+                        <p class="text-blue-400 text-xs font-medium tracking-widest uppercase">
+                            Motor Architecture
+                        </p>
+                    </div>
+                    <table style="width:100%; border-collapse:collapse;">
+                        <tbody>
+                            <tr style="border-bottom:1px solid #111827;">
+                                <td class="px-6 py-3 text-gray-500 text-xs">Phases</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">3</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #111827;">
+                                <td class="px-6 py-3 text-gray-500 text-xs">Poles</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">8 (4 pole pairs)</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #111827;">
+                                <td class="px-6 py-3 text-gray-500 text-xs">Winding</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">Delta</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #111827;">
+                                <td class="px-6 py-3 text-gray-500 text-xs">Hall Sensors</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">Honeywell · 120° electrical</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #111827;">
+                                <td class="px-6 py-3 text-gray-500 text-xs">IP Rating</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">IP30</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-3 text-gray-500 text-xs">Insulation Class</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">Class B</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-800">
+                        <p class="text-blue-400 text-xs font-medium tracking-widest uppercase">
+                            Mechanical
+                        </p>
+                    </div>
+                    <table style="width:100%; border-collapse:collapse;">
+                        <tbody>
+                            <tr style="border-bottom:1px solid #111827;">
+                                <td class="px-6 py-3 text-gray-500 text-xs">Frame</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">NEMA 17 (42 mm)</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #111827;">
+                                <td class="px-6 py-3 text-gray-500 text-xs">Shaft Runout</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">0.025 mm</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #111827;">
+                                <td class="px-6 py-3 text-gray-500 text-xs">Max Radial Force</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">28 N @ 20 mm</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #111827;">
+                                <td class="px-6 py-3 text-gray-500 text-xs">Max Axial Force</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">10 N</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-3 text-gray-500 text-xs">Weight</td>
+                                <td class="px-6 py-3 text-white text-sm font-medium text-right">0.3 kg</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase Breakdown -->
+    <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-6 pb-4 border-b border-gray-800">
+            Project Phases
+        </h2>
+        <div class="space-y-4">
+
+            <!-- Phase 1 -->
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                <div style="display:flex; align-items:center;
+                            justify-content:space-between; margin-bottom:0.75rem;">
+                    <h3 class="text-white font-semibold text-lg">
+                        Phase 1 — Sensorless FOC Speed Control
+                    </h3>
+                    <span class="text-xs font-medium px-2 py-1 rounded
+                                 bg-yellow-950 text-yellow-400 border border-yellow-900
+                                 flex-shrink-0 ml-4">
+                        In Progress
+                    </span>
+                </div>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        Back-EMF / FAST observer sensorless algorithm (TI MotorControl SDK)
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        Open-loop startup sequence → closed-loop handoff
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        PI speed controller tuned via CCS real-time watch/graph
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                     flex-shrink-0 mt-1.5"></span>
+                        Phase current reconstruction from DRV8323RS inline shunt amps
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 opacity-60">
+                <div style="display:flex; align-items:center;
+                            justify-content:space-between; margin-bottom:0.75rem;">
+                    <h3 class="text-white font-semibold text-lg">
+                        Phase 2 — Sensored FOC (Hall → AS5047D)
+                    </h3>
+                    <span class="text-xs font-medium px-2 py-1 rounded
+                                 bg-gray-800 text-gray-400 border border-gray-700
+                                 flex-shrink-0 ml-4">
+                        Pending
+                    </span>
+                </div>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Step 2a — use onboard Honeywell Hall sensors (120° electrical) for
+                        sensored trapezoidal commutation; no additional hardware required
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Step 2b — add AS5047D magnetic encoder (14-bit, SPI) for high-resolution
+                        rotor angle; 3D print precision encoder housing in Fusion 360
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Upgrade FOC from estimated (FAST observer) to measured rotor angle
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Improved low-speed torque and stable operation down to near-zero RPM
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 opacity-60">
+                <div style="display:flex; align-items:center;
+                            justify-content:space-between; margin-bottom:0.75rem;">
+                    <h3 class="text-white font-semibold text-lg">
+                        Phase 3 — Position Control
+                    </h3>
+                    <span class="text-xs font-medium px-2 py-1 rounded
+                                 bg-gray-800 text-gray-400 border border-gray-700
+                                 flex-shrink-0 ml-4">
+                        Pending
+                    </span>
+                </div>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Outer position loop cascaded over FOC speed loop
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Trapezoidal velocity profiling for smooth point-to-point moves
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Load disturbance testing with 3D printed flywheel
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 opacity-60">
+                <div style="display:flex; align-items:center;
+                            justify-content:space-between; margin-bottom:0.75rem;">
+                    <h3 class="text-white font-semibold text-lg">
+                        Phase 4 — Custom PCB Design & Fabrication
+                    </h3>
+                    <span class="text-xs font-medium px-2 py-1 rounded
+                                 bg-gray-800 text-gray-400 border border-gray-700
+                                 flex-shrink-0 ml-4">
+                        Pending
+                    </span>
+                </div>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Redesign LaunchPad + BoosterPack stack as a single custom PCB in KiCad
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Full schematic capture — MCU, gate driver, current sensing, power stage,
+                        encoder interface, connectors
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        PCB layout with proper power plane separation, current loop minimization,
+                        and thermal considerations for the gate driver
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Generate and submit gerbers for board fabrication
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-400 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                     flex-shrink-0 mt-1.5"></span>
+                        Publish KiCad project, gerbers, schematic PDF, and layout to portfolio
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Artifact placeholders -->
+    <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-6 pb-4 border-b border-gray-800">
+            Project Artifacts
+        </h2>
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:1.5rem;">
+
+            <!-- Firmware / GitHub -->
+            <div class="bg-gray-900 border border-gray-800 border-dashed rounded-xl p-8 text-center">
+                <p class="text-gray-500 text-sm font-medium mb-1">Firmware / GitHub</p>
+                <p class="text-gray-600 text-xs">TI CCS · C2000 — coming Phase 1</p>
+            </div>
+
+            <!-- Build Photos -->
+            <div class="bg-gray-900 border border-gray-800 border-dashed rounded-xl p-8 text-center">
+                <p class="text-gray-500 text-sm font-medium mb-1">Build Photos</p>
+                <p class="text-gray-600 text-xs">Coming Phase 1</p>
+            </div>
+
+            <!-- ME Drawing -->
+            <div class="bg-gray-900 border border-gray-800 border-dashed rounded-xl p-8 text-center">
+                <p class="text-gray-500 text-sm font-medium mb-1">ME Drawings</p>
+                <p class="text-gray-600 text-xs">Fusion 360 — coming Phase 2</p>
+            </div>
+
+            <!-- KiCad / PCB -->
+            <div class="bg-gray-900 border border-gray-800 border-dashed rounded-xl p-8 text-center">
+                <p class="text-gray-500 text-sm font-medium mb-1">KiCad · Schematic · Gerbers</p>
+                <p class="text-gray-600 text-xs">Custom PCB — coming Phase 4</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3D Printed Parts -->
+    <section>
+        <h2 class="text-2xl font-semibold text-white mb-6 pb-4 border-b border-gray-800">
+            3D Printed Parts
+        </h2>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
+            <p class="text-gray-500 text-xs font-medium tracking-widest uppercase mb-4">
+                Dremel 3D45 · Fusion 360
+            </p>
+            <ul class="space-y-2">
+                <li class="flex items-start gap-2 text-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                 flex-shrink-0 mt-1.5"></span>
+                    <span class="text-gray-400">Motor mount plate</span>
+                    <span class="ml-auto text-xs text-gray-600">Phase 1</span>
+                </li>
+                <li class="flex items-start gap-2 text-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                 flex-shrink-0 mt-1.5"></span>
+                    <span class="text-gray-400">Encoder housing (AS5047D + diametric magnet)</span>
+                    <span class="ml-auto text-xs text-gray-600">Phase 2</span>
+                </li>
+                <li class="flex items-start gap-2 text-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                 flex-shrink-0 mt-1.5"></span>
+                    <span class="text-gray-400">Inertial load flywheel</span>
+                    <span class="ml-auto text-xs text-gray-600">Phase 3</span>
+                </li>
+                <li class="flex items-start gap-2 text-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gray-600
+                                 flex-shrink-0 mt-1.5"></span>
+                    <span class="text-gray-400">Electronics enclosure (LaunchPad + BoosterPack)</span>
+                    <span class="ml-auto text-xs text-gray-600">Phase 1</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

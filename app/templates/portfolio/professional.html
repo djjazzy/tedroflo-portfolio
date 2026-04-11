@@ -1,0 +1,404 @@
+{% extends "base.html" %}
+{% block title %}Professional Work — Portfolio{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-6 py-16">
+
+    <!-- Breadcrumb -->
+    <div class="mb-10 text-sm text-gray-500">
+        <a href="{{ url_for('portfolio.index') }}" class="hover:text-gray-300 transition-colors">
+            Portfolio
+        </a>
+        <span class="mx-2">›</span>
+        <a href="{{ url_for('portfolio.ee') }}" class="hover:text-gray-300 transition-colors">
+            Electrical Engineering
+        </a>
+        <span class="mx-2">›</span>
+        <span class="text-gray-300">Professional Work</span>
+    </div>
+
+    <!-- Page header -->
+    <div class="mb-10">
+        <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-2">
+            Industry Experience
+        </p>
+        <h1 class="text-5xl font-bold text-white mb-4 tracking-tight">
+            Professional Work
+        </h1>
+        <p class="text-gray-400 text-lg leading-relaxed">
+            Medical device development across embedded systems, power electronics,
+            motor control, and electrosurgical platforms — built to FDA and IEC standards.
+        </p>
+    </div>
+
+    <!-- IP Disclaimer -->
+    <div class="bg-gray-900 border border-yellow-900 rounded-xl px-6 py-4 mb-16">
+        <p class="text-yellow-500 text-xs font-medium tracking-widest uppercase mb-1">
+            IP Notice
+        </p>
+        <p class="text-gray-400 text-sm leading-relaxed">
+            Work performed as an employee of Arthrex, Inc. Design details, schematics,
+            firmware, and test data are proprietary and confidential to Arthrex, Inc.
+            Device descriptions reference publicly available product information and FDA
+            clearance documentation only. Patents listed are publicly accessible via the
+            USPTO and EPO.
+        </p>
+    </div>
+
+    <!-- AR-6480 DualWave Pump -->
+    <section class="mb-16">
+        <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+
+            <!-- Device header -->
+            <div class="px-8 py-6 border-b border-gray-800">
+                <div style="display:flex; align-items:flex-start;
+                            justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+                    <div>
+                        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.75rem;">
+                            <span class="text-xs font-medium px-2 py-1 rounded
+                                         bg-blue-950 text-blue-400 border border-blue-900">
+                                FDA Class II
+                            </span>
+                            <span class="text-xs font-medium px-2 py-1 rounded
+                                         bg-blue-950 text-blue-400 border border-blue-900">
+                                Fluid Management
+                            </span>
+                            <span class="text-xs font-medium px-2 py-1 rounded
+                                         bg-blue-950 text-blue-400 border border-blue-900">
+                                Named Inventor
+                            </span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-white mb-1">
+                            AR-6480 DualWave Arthroscopy Pump
+                        </h2>
+                        <p class="text-gray-500 text-sm">Arthrex, Inc. · Arthroscopic Fluid Management System</p>
+                    </div>
+                    <a href="https://www.arthrex.com/products/AR-6480"
+                       target="_blank" rel="noopener noreferrer"
+                       class="text-xs text-blue-400 hover:text-blue-300 transition-colors
+                              border border-blue-900 rounded px-3 py-1.5 flex-shrink-0">
+                        Arthrex Product Page ›
+                    </a>
+                </div>
+            </div>
+
+            <!-- Role -->
+            <div class="px-8 py-6 border-b border-gray-800">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-4">
+                    Engineering Role
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Developed embedded C firmware for closed-loop fluid pressure and flow control
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Designed and tested PCBAs supporting inflow/outflow pump operation and
+                        surgical device detection circuitry
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Contributed to dynamic pressure estimation algorithms operating without
+                        invasive intra-articular monitoring
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Verified system per IEC 60601-1 and ISO 14971 risk management framework
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Collaborated cross-functionally with QA, Regulatory, and Reliability through
+                        FDA 510(k) submission process
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Standards -->
+            <div class="px-8 py-5 border-b border-gray-800">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-3">
+                    Standards Applied
+                </p>
+                <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">IEC 60601-1</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">ISO 14971</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">IEC 62304</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">CFR 21 Part 820</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">FDA 510(k)</span>
+                </div>
+            </div>
+
+            <!-- Patents -->
+            <div class="px-8 py-6">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-4">
+                    Patents — Named Inventor
+                </p>
+                <div class="space-y-3">
+
+                    <a href="https://patents.google.com/patent/US8206342B2"
+                       target="_blank" rel="noopener noreferrer"
+                       class="block bg-gray-950 border border-gray-800 rounded-lg px-5 py-4
+                              hover:border-blue-800 transition-colors group">
+                        <div style="display:flex; align-items:flex-start;
+                                    justify-content:space-between; gap:1rem;">
+                            <div>
+                                <p class="text-blue-400 text-xs font-mono mb-1 group-hover:text-blue-300">
+                                    US8206342B2
+                                </p>
+                                <p class="text-white text-sm font-medium mb-1">
+                                    Fluid Management System
+                                </p>
+                                <p class="text-gray-500 text-xs">
+                                    Issued June 26, 2012 · Arthrex, Inc.
+                                </p>
+                            </div>
+                            <span class="text-gray-600 group-hover:text-blue-400
+                                         transition-colors flex-shrink-0">›</span>
+                        </div>
+                    </a>
+
+                    <a href="https://patents.google.com/patent/US8663157B2"
+                       target="_blank" rel="noopener noreferrer"
+                       class="block bg-gray-950 border border-gray-800 rounded-lg px-5 py-4
+                              hover:border-blue-800 transition-colors group">
+                        <div style="display:flex; align-items:flex-start;
+                                    justify-content:space-between; gap:1rem;">
+                            <div>
+                                <p class="text-blue-400 text-xs font-mono mb-1 group-hover:text-blue-300">
+                                    US8663157B2
+                                </p>
+                                <p class="text-white text-sm font-medium mb-1">
+                                    Fluid Management System
+                                </p>
+                                <p class="text-gray-500 text-xs">
+                                    Issued March 4, 2014 · Arthrex, Inc.
+                                </p>
+                            </div>
+                            <span class="text-gray-600 group-hover:text-blue-400
+                                         transition-colors flex-shrink-0">›</span>
+                        </div>
+                    </a>
+
+                    <a href="https://patents.google.com/patent/EP2165720A1"
+                       target="_blank" rel="noopener noreferrer"
+                       class="block bg-gray-950 border border-gray-800 rounded-lg px-5 py-4
+                              hover:border-blue-800 transition-colors group">
+                        <div style="display:flex; align-items:flex-start;
+                                    justify-content:space-between; gap:1rem;">
+                            <div>
+                                <p class="text-blue-400 text-xs font-mono mb-1 group-hover:text-blue-300">
+                                    EP2165720A1
+                                </p>
+                                <p class="text-white text-sm font-medium mb-1">
+                                    Fluid Management System
+                                </p>
+                                <p class="text-gray-500 text-xs">
+                                    Published March 24, 2010 · Arthrex, Inc. · European Patent
+                                </p>
+                            </div>
+                            <span class="text-gray-600 group-hover:text-blue-400
+                                         transition-colors flex-shrink-0">›</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- AR-8305 Synergy Shaver -->
+    <section class="mb-16">
+        <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+
+            <div class="px-8 py-6 border-b border-gray-800">
+                <div style="display:flex; align-items:flex-start;
+                            justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+                    <div>
+                        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.75rem;">
+                            <span class="text-xs font-medium px-2 py-1 rounded
+                                         bg-blue-950 text-blue-400 border border-blue-900">
+                                FDA Class I
+                            </span>
+                            <span class="text-xs font-medium px-2 py-1 rounded
+                                         bg-blue-950 text-blue-400 border border-blue-900">
+                                Motor Control
+                            </span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-white mb-1">
+                            AR-8305 Synergy Resection Shaver System
+                        </h2>
+                        <p class="text-gray-500 text-sm">
+                            Arthrex, Inc. · Powered Orthopedic Surgical Console
+                        </p>
+                        <p class="text-gray-600 text-xs mt-1">
+                            Handpieces: AR-8330H · AR-8330F · AR-8332H
+                        </p>
+                    </div>
+                    <a href="https://www.arthrex.com/products/AR-8305"
+                       target="_blank" rel="noopener noreferrer"
+                       class="text-xs text-blue-400 hover:text-blue-300 transition-colors
+                              border border-blue-900 rounded px-3 py-1.5 flex-shrink-0">
+                        Arthrex Product Page ›
+                    </a>
+                </div>
+            </div>
+
+            <div class="px-8 py-6 border-b border-gray-800">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-4">
+                    Engineering Role
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Developed embedded C/C++ firmware for high-speed BLDC motor control
+                        (up to 8,000 RPM) across multi-channel handpiece configurations
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Designed and verified PCBAs supporting motor drive and handpiece
+                        interface electronics
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Executed verification and validation testing per IEC 62304 software
+                        lifecycle and CFR 21 Part 820 design controls
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Supported multiple handpiece variants through ECO process and
+                        design change verification
+                    </li>
+                </ul>
+            </div>
+
+            <div class="px-8 py-5">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-3">
+                    Standards Applied
+                </p>
+                <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">IEC 60601-1</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">IEC 62304</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">ISO 14971</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">CFR 21 Part 820</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- AR-9800 SynergyRF -->
+    <section class="mb-16">
+        <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+
+            <div class="px-8 py-6 border-b border-gray-800">
+                <div style="display:flex; align-items:flex-start;
+                            justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+                    <div>
+                        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.75rem;">
+                            <span class="text-xs font-medium px-2 py-1 rounded
+                                         bg-blue-950 text-blue-400 border border-blue-900">
+                                FDA Class II
+                            </span>
+                            <span class="text-xs font-medium px-2 py-1 rounded
+                                         bg-blue-950 text-blue-400 border border-blue-900">
+                                Electrosurgical
+                            </span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-white mb-1">
+                            AR-9800 SynergyRF Electrosurgical System
+                        </h2>
+                        <p class="text-gray-500 text-sm">
+                            Arthrex, Inc. · RF Ablation &amp; Electrosurgical Generator
+                        </p>
+                        <p class="text-gray-600 text-xs mt-1">
+                            Accessories: AR-98xx ApolloRF electrosurgical wands
+                        </p>
+                    </div>
+                    <a href="https://www.arthrex.com/products/AR-9800"
+                       target="_blank" rel="noopener noreferrer"
+                       class="text-xs text-blue-400 hover:text-blue-300 transition-colors
+                              border border-blue-900 rounded px-3 py-1.5 flex-shrink-0">
+                        Arthrex Product Page ›
+                    </a>
+                </div>
+            </div>
+
+            <div class="px-8 py-6 border-b border-gray-800">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-4">
+                    Engineering Role
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Designed and tested power electronics for RF electrosurgical output
+                        per IEC 60601-2-2
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Developed safety-critical firmware for RF power delivery, output
+                        monitoring, and fault protection
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Implemented and tested intelligent device recognition (IDR) circuitry
+                        for automatic identification of AR-98xx accessory wands
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-300 text-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5"></span>
+                        Executed MOOP/MOPP isolation verification and dielectric withstand
+                        testing per IEC 60601-1
+                    </li>
+                </ul>
+            </div>
+
+            <div class="px-8 py-5">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-3">
+                    Standards Applied
+                </p>
+                <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">IEC 60601-1</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">IEC 60601-2-2</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">AAMI HF18</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">ISO 14971</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">IEC 62304</span>
+                    <span class="text-xs text-gray-400 px-2 py-1 rounded bg-gray-800 border border-gray-700">CFR 21 Part 820</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Additional Patents (less prominent) -->
+    <section>
+        <h2 class="text-lg font-medium text-gray-500 mb-4 pb-3 border-b border-gray-800">
+            Additional Patents
+        </h2>
+        <a href="https://patents.google.com/patent/US9516766B2"
+           target="_blank" rel="noopener noreferrer"
+           class="block bg-gray-900 border border-gray-800 rounded-xl px-6 py-5
+                  hover:border-gray-700 transition-colors group">
+            <div style="display:flex; align-items:flex-start;
+                        justify-content:space-between; gap:1rem;">
+                <div>
+                    <p class="text-gray-500 text-xs font-mono mb-1">US9516766B2</p>
+                    <p class="text-gray-300 text-sm font-medium mb-1">
+                        Portable Electronic Device Assembly Having Sterilizable Housing
+                    </p>
+                    <p class="text-gray-600 text-xs">
+                        Issued December 6, 2016 · Arthrex, Inc. ·
+                        Co-inventor: Terrance McLaughlin
+                    </p>
+                    <p class="text-gray-600 text-xs mt-1">
+                        Hermetically sealed enclosure enabling use of consumer electronics
+                        within a sterile surgical field
+                    </p>
+                </div>
+                <span class="text-gray-600 group-hover:text-gray-400
+                             transition-colors flex-shrink-0">›</span>
+            </div>
+        </a>
+    </section>
+
+</div>
+{% endblock %}

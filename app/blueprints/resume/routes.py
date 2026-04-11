@@ -10,6 +10,7 @@ skills = {
         "Motor Control (PID, solenoids, servos)",
         "Signal Processing",
         "RF / Wireless",
+        "LTspice",
     ],
     "Software Engineering": [
         "Python / Flask",

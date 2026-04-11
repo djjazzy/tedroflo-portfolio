@@ -1,0 +1,24 @@
+[Unit]
+Description=Tailwind CSS watcher for portfolio
+After=network.target
+
+[Service]
+Type=simple
+User=edwin
+WorkingDirectory=/home/edwin/portfolio
+ExecStart=/bin/bash -c '\
+    while true; do \
+        inotifywait -r -e modify,create,delete \
+            /home/edwin/portfolio/app/templates \
+            /home/edwin/portfolio/app/static/css/tailwind.css; \
+        /home/edwin/portfolio/tailwindcss \
+            -i /home/edwin/portfolio/app/static/css/tailwind.css \
+            -o /home/edwin/portfolio/app/static/css/main.css \
+            --minify; \
+        echo "Tailwind recompiled at $(date)"; \
+    done'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,5 +1,90 @@
 {% extends "base.html" %}
-{% block title %}Portfolio{% endblock %}
+{% block title %}Portfolio — Edwin Floyd{% endblock %}
+
 {% block content %}
-<h1>Portfolio</h1>
+<div class="max-w-4xl mx-auto px-6 py-16">
+
+    <!-- Page header -->
+    <div class="mb-16">
+        <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-2">
+            Work & Projects
+        </p>
+        <h1 class="text-5xl font-bold text-white mb-4 tracking-tight">Portfolio</h1>
+        <p class="text-gray-400 text-lg">
+            Projects spanning electrical, software, and mechanical engineering —
+            built from schematic to firmware to enclosure.
+        </p>
+    </div>
+
+    <!-- Discipline cards -->
+    <div class="space-y-6">
+
+        <!-- Electrical Engineering -->
+        <a href="{{ url_for('portfolio.ee') }}"
+           class="block bg-gray-900 border border-gray-800 rounded-xl p-8
+                  hover:border-blue-500 transition-colors group">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:1rem;">
+                <div>
+                    <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-2">
+                        EE
+                    </p>
+                    <h2 class="text-2xl font-semibold text-white mb-3">
+                        Electrical Engineering
+                    </h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Motor control systems, PCB design, power electronics, sensor integration,
+                        and embedded hardware design for medical and industrial applications.
+                    </p>
+                </div>
+                <span class="text-gray-600 text-2xl group-hover:text-blue-400
+                             transition-colors" style="flex-shrink:0;">›</span>
+            </div>
+        </a>
+
+        <!-- Software Engineering -->
+        <a href="{{ url_for('portfolio.se') }}"
+           class="block bg-gray-900 border border-gray-800 rounded-xl p-8
+                  hover:border-blue-500 transition-colors group">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:1rem;">
+                <div>
+                    <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-2">
+                        SE
+                    </p>
+                    <h2 class="text-2xl font-semibold text-white mb-3">
+                        Software Engineering
+                    </h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Embedded firmware, full-stack web development, test automation,
+                        and open-source projects. Includes this portfolio site.
+                    </p>
+                </div>
+                <span class="text-gray-600 text-2xl group-hover:text-blue-400
+                             transition-colors" style="flex-shrink:0;">›</span>
+            </div>
+        </a>
+
+        <!-- Mechanical Engineering -->
+        <a href="{{ url_for('portfolio.me') }}"
+           class="block bg-gray-900 border border-gray-800 rounded-xl p-8
+                  hover:border-blue-500 transition-colors group">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:1rem;">
+                <div>
+                    <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-2">
+                        ME
+                    </p>
+                    <h2 class="text-2xl font-semibold text-white mb-3">
+                        Mechanical Engineering
+                    </h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        3D printed assemblies, Fusion 360 drawings, enclosures, fixtures,
+                        and mechanical design supporting EE and embedded projects.
+                    </p>
+                </div>
+                <span class="text-gray-600 text-2xl group-hover:text-blue-400
+                             transition-colors" style="flex-shrink:0;">›</span>
+            </div>
+        </a>
+
+    </div>
+</div>
 {% endblock %}

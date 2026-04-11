@@ -65,9 +65,15 @@
 
                         <!-- Expandable body -->
                         <div class="card-body hidden border-t border-gray-800 px-6 py-5">
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                {{ job.description }}
-                            </p>
+                            <ul class="space-y-2">
+                                {% for bullet in job.description.split('\n') if bullet.strip() %}
+                                <li class="flex items-start gap-2 text-gray-300 text-sm">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500
+                                                 flex-shrink-0 mt-1.5"></span>
+                                    {{ bullet.strip() }}
+                                </li>
+                                {% endfor %}
+                            </ul>
                         </div>
 
                     </div>
