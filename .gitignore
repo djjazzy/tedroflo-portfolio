@@ -1,8 +1,4 @@
-nano .gitignore
-```
-
-Paste this:
-```
+tailwindcss
 venv/
 __pycache__/
 *.pyc
