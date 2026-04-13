@@ -35,7 +35,7 @@ app/
 ├── blueprints/
 │   ├── main/        # Home, About
 │   ├── resume/      # Work history, skills
-│   ├── portfolio/   # EE, SE, ME project pages
+│   ├── portfolio/   # Illustrations & Demonstrations, Professional Work
 │   └── lab/         # Interactive visualizations (HTML5 Canvas)
 ├── models/          # SQLAlchemy models (Job, etc.)
 ├── static/          # CSS, images
