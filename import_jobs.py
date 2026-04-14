@@ -4,13 +4,6 @@ from datetime import datetime
 from wsgi import app
 from app.models import db, Job
 
-# Map logo filename to company name
-COMPANY_MAP = {
-    "edwards_logo.png":  "Edwards Lifesciences",
-    "megadyne_logo.png": "Megadyne Medical",
-    "arthrex_logo.png":  "Arthrex",
-}
-
 def parse_date(date_str):
     if not date_str:
         return None
@@ -28,14 +21,12 @@ def import_jobs(csv_path):
             count = 0
 
             for row in reader:
-                logo     = row["job_logo"].strip()
-                company  = COMPANY_MAP.get(logo, logo)
-                title    = row["job_title"].strip()
-                start    = parse_date(row["job_start"])
-                end      = parse_date(row["job_end"])
-                desc     = row["job_description"].strip()
+                company = row["company"].strip()
+                title   = row["job_title"].strip()
+                start   = parse_date(row["job_start"])
+                end     = parse_date(row["job_end"])
+                desc    = row["job_description"].strip()
 
-                # Check if already imported
                 existing = Job.query.filter_by(
                     title=title,
                     start_date=start
@@ -47,7 +38,6 @@ def import_jobs(csv_path):
 
                 job = Job(
                     company     = company,
-                    logo        = logo,
                     title       = title,
                     start_date  = start,
                     end_date    = end,
