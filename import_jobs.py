@@ -1,4 +1,5 @@
 import csv
+import re
 import sys
 from datetime import datetime
 from wsgi import app
@@ -25,7 +26,11 @@ def import_jobs(csv_path):
                 title   = row["job_title"].strip()
                 start   = parse_date(row["job_start"])
                 end     = parse_date(row["job_end"])
-                desc    = row["job_description"].strip()
+                raw     = row["job_description"].strip()
+                # Split on ". " followed by a capital letter to preserve
+                # abbreviations like IEC 60601-2-2, CFR 21 820, etc.
+                sentences = re.split(r'\.\s+(?=[A-Z])', raw)
+                desc    = '\n'.join(s.strip().rstrip('.') for s in sentences if s.strip())
 
                 existing = Job.query.filter_by(
                     title=title,
